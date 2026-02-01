@@ -143,6 +143,30 @@ function runCommandSync(command: string): { success: boolean; output: string } {
   }
 }
 
+async function fetchCredentialsWithRetry(spaceId: number, maxRetries = 3, delayMs = 5000): Promise<boolean> {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    log(`\nAttempt ${attempt}/${maxRetries}: Fetching Drupal credentials...`, 'dim');
+
+    const result = await runCommand('npx', ['decoupled-cli@latest', 'spaces', 'env', String(spaceId), '--write', '.env.local'], { silent: true });
+
+    // Check if .env.local was written with credentials
+    const envPath = path.join(process.cwd(), '.env.local');
+    if (fs.existsSync(envPath)) {
+      const content = fs.readFileSync(envPath, 'utf8');
+      if (content.includes('DRUPAL_CLIENT_ID') || content.includes('NEXT_PUBLIC_DRUPAL_BASE_URL')) {
+        return true;
+      }
+    }
+
+    if (attempt < maxRetries) {
+      log(`Credentials not received, retrying in ${delayMs / 1000}s...`, 'yellow');
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+  }
+
+  return false;
+}
+
 async function checkAuth(): Promise<boolean> {
   const result = runCommandSync('npx decoupled-cli@latest auth status 2>&1');
   return result.success && !result.output.includes('not authenticated');
@@ -295,8 +319,17 @@ ${COLORS.magenta}╔════════════════════
   // Step 4: Configure Drupal environment
   logStep(currentStep++, totalSteps, 'Configuring Drupal environment');
 
-  log('\nFetching Drupal credentials...', 'dim');
-  await runCommand('npx', ['decoupled-cli@latest', 'spaces', 'env', String(spaceId), '--write', '.env.local']);
+  const credentialsSuccess = await fetchCredentialsWithRetry(spaceId, 3, 5000);
+
+  if (!credentialsSuccess) {
+    logError('Failed to fetch credentials after 3 attempts.');
+    log('You can try manually: npx decoupled-cli@latest spaces env ' + spaceId + ' --write .env.local', 'yellow');
+
+    const shouldContinue = await confirm('Continue with setup anyway?', false);
+    if (!shouldContinue) {
+      process.exit(1);
+    }
+  }
 
   // Reload env vars after CLI writes them
   envVars = readEnvFile(envPath);
@@ -307,7 +340,11 @@ ${COLORS.magenta}╔════════════════════
     writeEnvFile(envPath, envVars);
   }
 
-  logSuccess('Drupal environment configured');
+  if (envVars['NEXT_PUBLIC_DRUPAL_BASE_URL']) {
+    logSuccess('Drupal environment configured');
+  } else {
+    logError('Drupal credentials not configured - you will need to set them manually in .env.local');
+  }
 
   // Step 5: Configure Stripe
   logStep(currentStep++, totalSteps, 'Configuring Stripe');
