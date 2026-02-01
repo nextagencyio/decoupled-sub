@@ -53,7 +53,7 @@
         "title": "Sarah Chen",
         "body": "<p>Senior technology analyst with 15 years of experience covering startups, AI, and emerging tech trends.</p>",
         "avatar": {
-          "url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+          "uri": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
           "alt": "Sarah Chen"
         }
       }
@@ -65,7 +65,7 @@
         "title": "Marcus Johnson",
         "body": "<p>Former Wall Street analyst turned independent researcher. Specializes in fintech and cryptocurrency markets.</p>",
         "avatar": {
-          "url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+          "uri": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
           "alt": "Marcus Johnson"
         }
       }
@@ -80,7 +80,7 @@
         "read_time": "8 min read",
         "featured": true,
         "image": {
-          "url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop",
+          "uri": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop",
           "alt": "AI visualization"
         },
         "author": "@author-sarah"
@@ -96,7 +96,7 @@
         "read_time": "6 min read",
         "featured": false,
         "image": {
-          "url": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=1200&h=630&fit=crop",
+          "uri": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=1200&h=630&fit=crop",
           "alt": "Cryptocurrency chart"
         },
         "author": "@author-marcus"
@@ -112,7 +112,7 @@
         "read_time": "5 min read",
         "featured": false,
         "image": {
-          "url": "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=1200&h=630&fit=crop",
+          "uri": "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=1200&h=630&fit=crop",
           "alt": "Remote work setup"
         },
         "author": "@author-sarah"
@@ -128,7 +128,7 @@
         "read_time": "7 min read",
         "featured": false,
         "image": {
-          "url": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&h=630&fit=crop",
+          "uri": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&h=630&fit=crop",
           "alt": "Sustainable energy"
         },
         "author": "@author-marcus"
@@ -144,7 +144,7 @@
         "read_time": "6 min read",
         "featured": false,
         "image": {
-          "url": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1200&h=630&fit=crop",
+          "uri": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1200&h=630&fit=crop",
           "alt": "Startup office"
         },
         "author": "@author-sarah"

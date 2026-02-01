@@ -4,7 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '*.decoupled.website',
+        hostname: '**.decoupled.website',
+      },
+      {
+        protocol: 'http',
+        hostname: '**.decoupled.website',
       },
       {
         protocol: 'https',

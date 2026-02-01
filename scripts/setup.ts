@@ -57,6 +57,50 @@ async function prompt(question: string, defaultValue?: string): Promise<string> 
   });
 }
 
+async function promptSecret(question: string): Promise<string> {
+  return new Promise((resolve) => {
+    process.stdout.write(`${question}: `);
+
+    const stdin = process.stdin;
+    const wasRaw = stdin.isRaw;
+    stdin.setRawMode(true);
+    stdin.resume();
+    stdin.setEncoding('utf8');
+
+    let input = '';
+
+    const onData = (char: string) => {
+      // Handle Ctrl+C
+      if (char === '\u0003') {
+        process.stdout.write('\n');
+        process.exit();
+      }
+      // Handle Enter
+      if (char === '\r' || char === '\n') {
+        stdin.removeListener('data', onData);
+        stdin.setRawMode(wasRaw);
+        stdin.pause();
+        process.stdout.write('\n');
+        resolve(input);
+        return;
+      }
+      // Handle Backspace
+      if (char === '\u007F' || char === '\b') {
+        if (input.length > 0) {
+          input = input.slice(0, -1);
+          process.stdout.write('\b \b');
+        }
+        return;
+      }
+      // Handle paste (multiple characters at once)
+      input += char;
+      process.stdout.write('*'.repeat(char.length));
+    };
+
+    stdin.on('data', onData);
+  });
+}
+
 async function confirm(question: string, defaultYes = true): Promise<boolean> {
   const hint = defaultYes ? '[Y/n]' : '[y/N]';
   const answer = await prompt(`${question} ${hint}`);
@@ -274,12 +318,66 @@ ${COLORS.yellow}To enable subscriptions, you need Stripe API keys.${COLORS.reset
   const configureStripe = await confirm('Configure Stripe now?');
 
   if (configureStripe) {
-    const publishableKey = await prompt('Stripe Publishable Key (pk_...)');
-    const secretKey = await prompt('Stripe Secret Key (sk_...)');
-    const priceId = await prompt('Stripe Price ID (price_...)');
+    logInfo('(Input is hidden for security)');
+    const publishableKey = await promptSecret('Stripe Publishable Key (pk_...)');
+    const secretKey = await promptSecret('Stripe Secret Key (sk_...)');
 
     if (publishableKey) envVars['NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY'] = publishableKey;
     if (secretKey) envVars['STRIPE_SECRET_KEY'] = secretKey;
+
+    // Offer to create a product automatically
+    let priceId = '';
+    if (secretKey) {
+      const createProduct = await confirm('Create a subscription product automatically? ($9/month)');
+
+      if (createProduct) {
+        log('\nCreating Stripe product...', 'dim');
+
+        try {
+          // Create product
+          const productRes = await fetch('https://api.stripe.com/v1/products', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${secretKey}`,
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'name=Premium%20Subscription&description=Unlimited%20access%20to%20all%20premium%20content',
+          });
+
+          if (!productRes.ok) {
+            throw new Error(`Failed to create product: ${productRes.statusText}`);
+          }
+
+          const product = await productRes.json();
+          logSuccess(`Created product: ${product.name}`);
+
+          // Create price
+          const priceRes = await fetch('https://api.stripe.com/v1/prices', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${secretKey}`,
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `product=${product.id}&unit_amount=900&currency=usd&recurring[interval]=month`,
+          });
+
+          if (!priceRes.ok) {
+            throw new Error(`Failed to create price: ${priceRes.statusText}`);
+          }
+
+          const price = await priceRes.json();
+          priceId = price.id;
+          logSuccess(`Created price: $9.00/month (${priceId})`);
+        } catch (error: any) {
+          logError(`Failed to create Stripe product: ${error.message}`);
+          log('You can create one manually at https://dashboard.stripe.com/products', 'yellow');
+          priceId = await promptSecret('Stripe Price ID (price_...) or press Enter to skip');
+        }
+      } else {
+        priceId = await promptSecret('Stripe Price ID (price_...)');
+      }
+    }
+
     if (priceId) envVars['STRIPE_PRICE_ID'] = priceId;
 
     writeEnvFile(envPath, envVars);
