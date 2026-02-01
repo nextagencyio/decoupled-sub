@@ -15,7 +15,7 @@
         {
           "id": "featured",
           "label": "Featured",
-          "type": "boolean",
+          "type": "bool",
           "description": "Show this article in the featured section"
         },
         {
@@ -24,52 +24,21 @@
           "type": "image"
         },
         {
-          "id": "author",
-          "label": "Author",
-          "type": "node(author)",
+          "id": "author_name",
+          "label": "Author Name",
+          "type": "string",
           "description": "The author of this article"
+        },
+        {
+          "id": "author_avatar",
+          "label": "Author Avatar",
+          "type": "image",
+          "description": "Author profile image"
         }
       ]
     },
-    {
-      "bundle": "author",
-      "label": "Author",
-      "description": "Author profiles",
-      "body": true,
-      "fields": [
-        {
-          "id": "avatar",
-          "label": "Avatar",
-          "type": "image"
-        }
-      ]
-    }
   ],
   "content": [
-    {
-      "type": "node.author",
-      "id": "author-sarah",
-      "values": {
-        "title": "Sarah Chen",
-        "body": "<p>Senior technology analyst with 15 years of experience covering startups, AI, and emerging tech trends.</p>",
-        "avatar": {
-          "uri": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
-          "alt": "Sarah Chen"
-        }
-      }
-    },
-    {
-      "type": "node.author",
-      "id": "author-marcus",
-      "values": {
-        "title": "Marcus Johnson",
-        "body": "<p>Former Wall Street analyst turned independent researcher. Specializes in fintech and cryptocurrency markets.</p>",
-        "avatar": {
-          "uri": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
-          "alt": "Marcus Johnson"
-        }
-      }
-    },
     {
       "type": "node.article",
       "id": "article-1",
@@ -83,7 +52,11 @@
           "uri": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop",
           "alt": "AI visualization"
         },
-        "author": "@author-sarah"
+        "author_name": "Sarah Chen",
+        "author_avatar": {
+          "uri": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+          "alt": "Sarah Chen"
+        }
       }
     },
     {
@@ -99,7 +72,11 @@
           "uri": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=1200&h=630&fit=crop",
           "alt": "Cryptocurrency chart"
         },
-        "author": "@author-marcus"
+        "author_name": "Marcus Johnson",
+        "author_avatar": {
+          "uri": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+          "alt": "Marcus Johnson"
+        }
       }
     },
     {
@@ -115,7 +92,11 @@
           "uri": "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=1200&h=630&fit=crop",
           "alt": "Remote work setup"
         },
-        "author": "@author-sarah"
+        "author_name": "Sarah Chen",
+        "author_avatar": {
+          "uri": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+          "alt": "Sarah Chen"
+        }
       }
     },
     {
@@ -131,7 +112,11 @@
           "uri": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&h=630&fit=crop",
           "alt": "Sustainable energy"
         },
-        "author": "@author-marcus"
+        "author_name": "Marcus Johnson",
+        "author_avatar": {
+          "uri": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+          "alt": "Marcus Johnson"
+        }
       }
     },
     {
@@ -147,7 +132,11 @@
           "uri": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1200&h=630&fit=crop",
           "alt": "Startup office"
         },
-        "author": "@author-sarah"
+        "author_name": "Sarah Chen",
+        "author_avatar": {
+          "uri": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+          "alt": "Sarah Chen"
+        }
       }
     }
   ]

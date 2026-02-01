@@ -300,6 +300,13 @@ ${COLORS.magenta}╔════════════════════
 
   // Reload env vars after CLI writes them
   envVars = readEnvFile(envPath);
+
+  // Ensure DRUPAL_BASE_URL is set (some apps need both with and without NEXT_PUBLIC prefix)
+  if (envVars['NEXT_PUBLIC_DRUPAL_BASE_URL'] && !envVars['DRUPAL_BASE_URL']) {
+    envVars['DRUPAL_BASE_URL'] = envVars['NEXT_PUBLIC_DRUPAL_BASE_URL'];
+    writeEnvFile(envPath, envVars);
+  }
+
   logSuccess('Drupal environment configured');
 
   // Step 5: Configure Stripe

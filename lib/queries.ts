@@ -15,11 +15,17 @@ export const GET_ALL_POSTS = gql`
           summary
         }
         readTime
+        featured
         image {
           url
           alt
           width
           height
+        }
+        authorName
+        authorAvatar {
+          url
+          alt
         }
       }
     }
@@ -43,11 +49,17 @@ export const GET_POST_BY_SLUG = gql`
               summary
             }
             readTime
+            featured
             image {
               url
               alt
               width
               height
+            }
+            authorName
+            authorAvatar {
+              url
+              alt
             }
           }
         }
@@ -70,11 +82,17 @@ export const GET_FEATURED_POSTS = gql`
           summary
         }
         readTime
+        featured
         image {
           url
           alt
           width
           height
+        }
+        authorName
+        authorAvatar {
+          url
+          alt
         }
       }
     }
@@ -105,7 +123,7 @@ export function transformPost(node: any): import('./types').Post | null {
     body: node.body?.processed || '',
     publishedAt: node.created?.time || new Date().toISOString(),
     readTime: node.readTime || '5 min read',
-    featured: false, // Boolean field not imported yet
+    featured: node.featured ?? false,
     image: node.image ? {
       url: node.image.url,
       alt: node.image.alt || node.title,
@@ -113,7 +131,11 @@ export function transformPost(node: any): import('./types').Post | null {
       height: node.image.height || 630,
     } : undefined,
     author: {
-      name: 'The Insider Team',
+      name: node.authorName || 'The Insider Team',
+      avatar: node.authorAvatar ? {
+        url: node.authorAvatar.url,
+        alt: node.authorAvatar.alt || node.authorName,
+      } : undefined,
     },
   }
 }
