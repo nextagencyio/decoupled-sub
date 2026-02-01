@@ -138,6 +138,46 @@
           "alt": "Sarah Chen"
         }
       }
+    },
+    {
+      "type": "node.article",
+      "id": "article-6",
+      "path": "/posts/cybersecurity-essentials",
+      "values": {
+        "title": "Cybersecurity Essentials for the Modern Enterprise",
+        "body": "<p>In an era of increasingly sophisticated cyber threats, protecting your organization's digital assets has never been more critical. Here's what every business leader needs to know about cybersecurity in 2026.</p><h2>The Evolving Threat Landscape</h2><p>Cyber attacks have grown more sophisticated and targeted. Ransomware attacks now routinely demand millions in payment, while state-sponsored actors target critical infrastructure and intellectual property.</p><p>The most common attack vectors include:</p><ul><li>Phishing and social engineering</li><li>Supply chain compromises</li><li>Zero-day exploits</li><li>Credential stuffing and password attacks</li></ul><h2>Zero Trust Architecture</h2><p>The traditional perimeter-based security model is dead. Organizations are now adopting zero trust frameworks that verify every user and device, regardless of location.</p><p>Key principles include:</p><ul><li>Never trust, always verify</li><li>Assume breach mentality</li><li>Least privilege access</li><li>Micro-segmentation</li></ul><h2>AI in Security</h2><p>Artificial intelligence is transforming both attack and defense capabilities. Security teams are using AI for threat detection, anomaly analysis, and automated response. Meanwhile, attackers are leveraging AI to create more convincing phishing campaigns and discover vulnerabilities faster.</p><h2>Building a Security Culture</h2><p>Technology alone isn't enough. Organizations must build a culture of security awareness where every employee understands their role in protecting the organization. Regular training, simulated phishing exercises, and clear reporting procedures are essential.</p><h2>Incident Response Planning</h2><p>It's not if, but when a breach will occur. Having a well-tested incident response plan can mean the difference between a minor inconvenience and a catastrophic business failure. Key elements include clear roles, communication plans, and regular tabletop exercises.</p>",
+        "read_time": "7 min read",
+        "featured": false,
+        "image": {
+          "uri": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=630&fit=crop",
+          "alt": "Cybersecurity concept"
+        },
+        "author_name": "Marcus Johnson",
+        "author_avatar": {
+          "uri": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+          "alt": "Marcus Johnson"
+        }
+      }
+    },
+    {
+      "type": "node.article",
+      "id": "article-7",
+      "path": "/posts/product-led-growth",
+      "values": {
+        "title": "Product-Led Growth: The Definitive Strategy Guide",
+        "body": "<p>Product-led growth (PLG) has transformed how software companies acquire, convert, and retain customers. Instead of relying solely on sales teams, PLG companies use the product itself as the primary driver of growth.</p><h2>What is Product-Led Growth?</h2><p>PLG is a business methodology where the product serves as the main vehicle for customer acquisition, conversion, and expansion. Users can experience the product's value before making a purchase decision, typically through free trials or freemium models.</p><h2>The PLG Flywheel</h2><p>Successful PLG companies create a self-reinforcing cycle:</p><ul><li><strong>Attract:</strong> Great products generate word-of-mouth and organic discovery</li><li><strong>Engage:</strong> Users experience value quickly through excellent onboarding</li><li><strong>Convert:</strong> Natural upgrade paths when users hit feature limits</li><li><strong>Expand:</strong> Happy users invite teammates and adopt more features</li></ul><h2>Key Metrics to Track</h2><p>PLG companies focus on different metrics than traditional sales-led organizations:</p><ul><li>Time to Value (TTV)</li><li>Product Qualified Leads (PQLs)</li><li>Activation rate</li><li>Feature adoption</li><li>Net Revenue Retention (NRR)</li></ul><h2>Building for PLG</h2><p>Implementing PLG requires fundamental changes to how you build and market your product. You need intuitive onboarding, clear value demonstration, and seamless upgrade paths. The product must essentially sell itself.</p><h2>When PLG Works Best</h2><p>PLG isn't right for every company. It works best when your product can deliver value quickly, the end user has buying power, and the price point supports self-service transactions. Enterprise software with complex implementations may still need sales-assisted motions.</p>",
+        "read_time": "6 min read",
+        "featured": true,
+        "image": {
+          "uri": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop",
+          "alt": "Growth analytics dashboard"
+        },
+        "author_name": "Sarah Chen",
+        "author_avatar": {
+          "uri": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+          "alt": "Sarah Chen"
+        }
+      }
     }
   ]
 }
