@@ -1,0 +1,154 @@
+{
+  "model": [
+    {
+      "bundle": "article",
+      "label": "Article",
+      "description": "Blog posts and articles for the subscription platform",
+      "body": true,
+      "fields": [
+        {
+          "id": "read_time",
+          "label": "Read Time",
+          "type": "string",
+          "description": "Estimated reading time (e.g., '5 min read')"
+        },
+        {
+          "id": "featured",
+          "label": "Featured",
+          "type": "boolean",
+          "description": "Show this article in the featured section"
+        },
+        {
+          "id": "image",
+          "label": "Featured Image",
+          "type": "image"
+        },
+        {
+          "id": "author",
+          "label": "Author",
+          "type": "node(author)",
+          "description": "The author of this article"
+        }
+      ]
+    },
+    {
+      "bundle": "author",
+      "label": "Author",
+      "description": "Author profiles",
+      "body": true,
+      "fields": [
+        {
+          "id": "avatar",
+          "label": "Avatar",
+          "type": "image"
+        }
+      ]
+    }
+  ],
+  "content": [
+    {
+      "type": "node.author",
+      "id": "author-sarah",
+      "values": {
+        "title": "Sarah Chen",
+        "body": "<p>Senior technology analyst with 15 years of experience covering startups, AI, and emerging tech trends.</p>",
+        "avatar": {
+          "url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+          "alt": "Sarah Chen"
+        }
+      }
+    },
+    {
+      "type": "node.author",
+      "id": "author-marcus",
+      "values": {
+        "title": "Marcus Johnson",
+        "body": "<p>Former Wall Street analyst turned independent researcher. Specializes in fintech and cryptocurrency markets.</p>",
+        "avatar": {
+          "url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+          "alt": "Marcus Johnson"
+        }
+      }
+    },
+    {
+      "type": "node.article",
+      "id": "article-1",
+      "path": "/posts/future-of-ai-2026",
+      "values": {
+        "title": "The Future of AI in 2026: What to Expect",
+        "body": "<p>Artificial intelligence has undergone a remarkable transformation over the past few years, and 2026 promises to be a pivotal year for the technology.</p><h2>The Rise of Multimodal AI</h2><p>One of the most significant trends we're seeing is the emergence of truly multimodal AI systems. These aren't just models that can process text and images separately – they're systems that understand the intrinsic connections between different types of data.</p><p>Companies like Anthropic, OpenAI, and Google have been racing to develop these capabilities, and the results are starting to show in practical applications. From code generation that understands visual mockups to AI assistants that can reason about complex diagrams, multimodal AI is becoming a reality.</p><h2>AI in the Enterprise</h2><p>Enterprise adoption of AI has moved well beyond the experimental phase. Organizations are now deploying AI at scale, with particular focus on:</p><ul><li>Automated customer service and support</li><li>Document processing and analysis</li><li>Code review and security auditing</li><li>Supply chain optimization</li></ul><p>The key shift is that AI is no longer a technology looking for problems to solve – it's become an essential tool that businesses can't afford to ignore.</p><h2>Regulatory Landscape</h2><p>With great power comes great regulation. Governments worldwide are implementing frameworks to ensure AI is developed and deployed responsibly. The EU AI Act is now in full effect, and similar legislation is being enacted globally.</p><p>This regulatory environment is actually beneficial for the industry, as it creates clear guidelines and helps build public trust in AI systems.</p><h2>What This Means for You</h2><p>For professionals, the message is clear: AI literacy is no longer optional. Understanding how to work alongside AI systems, prompt them effectively, and validate their outputs has become a core skill across industries.</p><p>For businesses, the time to develop an AI strategy was yesterday. Those who haven't started are falling behind, while early adopters are reaping significant competitive advantages.</p>",
+        "read_time": "8 min read",
+        "featured": true,
+        "image": {
+          "url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop",
+          "alt": "AI visualization"
+        },
+        "author": "@author-sarah"
+      }
+    },
+    {
+      "type": "node.article",
+      "id": "article-2",
+      "path": "/posts/crypto-market-analysis",
+      "values": {
+        "title": "Cryptocurrency Market Analysis: Where Are We Heading?",
+        "body": "<p>The cryptocurrency market has matured significantly since its Wild West days. Let's take a deep dive into current trends and what they mean for investors.</p><h2>Institutional Adoption</h2><p>Perhaps the most significant development has been the mainstream acceptance of cryptocurrency by traditional financial institutions. Major banks now offer crypto custody services, and several countries have approved Bitcoin ETFs.</p><p>This institutional involvement has brought both legitimacy and liquidity to the market, though it has also introduced new dynamics. Crypto markets now move more in tandem with traditional markets than they used to.</p><h2>DeFi Evolution</h2><p>Decentralized finance has evolved beyond simple lending and borrowing protocols. We're now seeing:</p><ul><li>Real-world asset tokenization</li><li>Cross-chain interoperability solutions</li><li>Improved user experiences that rival traditional finance</li><li>Regulatory-compliant DeFi protocols</li></ul><h2>The Layer 2 Revolution</h2><p>Scaling solutions have finally delivered on their promises. Layer 2 networks have reduced transaction costs by orders of magnitude while maintaining the security guarantees of their underlying chains.</p><p>This has opened up new use cases that were previously impractical, from microtransactions to gaming applications.</p><h2>Investment Thesis</h2><p>For long-term investors, the thesis remains compelling. Cryptocurrency represents a fundamental shift in how we think about money, ownership, and digital value. However, the days of 100x returns are likely behind us – expect more measured growth going forward.</p>",
+        "read_time": "6 min read",
+        "featured": false,
+        "image": {
+          "url": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=1200&h=630&fit=crop",
+          "alt": "Cryptocurrency chart"
+        },
+        "author": "@author-marcus"
+      }
+    },
+    {
+      "type": "node.article",
+      "id": "article-3",
+      "path": "/posts/remote-work-future",
+      "values": {
+        "title": "Remote Work 2.0: The Next Evolution of Distributed Teams",
+        "body": "<p>The remote work revolution that began in 2020 has entered a new phase. Here's what's changing and how organizations are adapting.</p><h2>Hybrid Is the New Normal</h2><p>Most organizations have settled on hybrid models, but the implementations vary widely. Some companies require specific days in office, while others leave it entirely up to employees.</p><p>The key insight is that there's no one-size-fits-all solution. The right approach depends on company culture, team composition, and the nature of the work being done.</p><h2>Virtual Collaboration Tools</h2><p>The tools we use for remote collaboration have improved dramatically. AI-powered features like real-time translation, meeting summarization, and intelligent scheduling have made distributed work more seamless than ever.</p><h2>The Talent Landscape</h2><p>Geographic constraints on hiring have largely dissolved for knowledge workers. This has created a truly global talent market, with implications for both employers and employees.</p><p>Companies can now access talent pools they never could before, while workers have more options than ever. This is reshaping compensation structures and career paths across industries.</p><h2>Challenges Remain</h2><p>Despite the progress, remote work still faces challenges. Building culture, onboarding new employees, and maintaining team cohesion require intentional effort. Organizations that succeed are those that treat remote work as a skill to be developed, not just a policy to be implemented.</p>",
+        "read_time": "5 min read",
+        "featured": false,
+        "image": {
+          "url": "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=1200&h=630&fit=crop",
+          "alt": "Remote work setup"
+        },
+        "author": "@author-sarah"
+      }
+    },
+    {
+      "type": "node.article",
+      "id": "article-4",
+      "path": "/posts/sustainable-investing",
+      "values": {
+        "title": "The Rise of Sustainable Investing: Beyond ESG",
+        "body": "<p>Sustainable investing has evolved from a niche concern to a mainstream investment strategy. But what does it really mean, and how can investors participate effectively?</p><h2>Moving Beyond Labels</h2><p>The early days of ESG investing were plagued by greenwashing and inconsistent standards. Today, we're seeing a more nuanced approach that goes beyond simple checkboxes.</p><p>Investors are demanding transparency and measurable outcomes. Companies that make sustainability claims now face scrutiny from regulators, rating agencies, and investors alike.</p><h2>Impact Investing</h2><p>A growing segment of investors want more than just avoiding harm – they want their capital to actively contribute to positive outcomes. This has led to the growth of impact investing, where financial returns are paired with measurable social or environmental benefits.</p><h2>Financial Performance</h2><p>The question of whether sustainable investing hurts returns has largely been answered. Research consistently shows that well-run sustainable strategies can match or exceed traditional approaches over the long term.</p><p>This shouldn't be surprising – companies that manage environmental and social risks effectively are often better managed overall.</p><h2>Getting Started</h2><p>For investors looking to align their portfolios with their values, the options have never been better. From sustainable index funds to direct impact investments, there's an approach for every risk tolerance and investment goal.</p>",
+        "read_time": "7 min read",
+        "featured": false,
+        "image": {
+          "url": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&h=630&fit=crop",
+          "alt": "Sustainable energy"
+        },
+        "author": "@author-marcus"
+      }
+    },
+    {
+      "type": "node.article",
+      "id": "article-5",
+      "path": "/posts/startup-funding-landscape",
+      "values": {
+        "title": "Startup Funding in 2026: A Complete Guide",
+        "body": "<p>The startup funding landscape has changed dramatically. Here's what founders need to know about raising capital in today's environment.</p><h2>The New Reality</h2><p>After the exuberance of 2021 and the correction that followed, we've settled into a new equilibrium. Valuations are more rational, due diligence is more thorough, and investors are focused on fundamentals.</p><p>This is actually healthy for the ecosystem. The companies that get funded now are building real businesses, not just chasing growth at any cost.</p><h2>What Investors Want</h2><p>Today's investors are looking for:</p><ul><li>Clear path to profitability</li><li>Defensible competitive advantages</li><li>Experienced founding teams</li><li>Capital efficiency</li></ul><h2>Alternative Funding Sources</h2><p>Traditional VC isn't the only option anymore. Revenue-based financing, crowdfunding, and strategic partnerships are all viable alternatives for the right companies.</p><h2>Tips for Founders</h2><p>Success in fundraising comes down to preparation. Know your metrics inside and out, understand your market deeply, and be ready to explain why your team is uniquely positioned to win.</p><p>And remember – the best fundraise is the one you don't need. Building a sustainable business is always better than being dependent on external capital.</p>",
+        "read_time": "6 min read",
+        "featured": false,
+        "image": {
+          "url": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1200&h=630&fit=crop",
+          "alt": "Startup office"
+        },
+        "author": "@author-sarah"
+      }
+    }
+  ]
+}

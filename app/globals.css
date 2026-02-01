@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-950 text-gray-100;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  @apply bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent;
+}
+
+/* Prose overrides for dark mode */
+.prose-dark {
+  --tw-prose-body: theme('colors.gray.300');
+  --tw-prose-headings: theme('colors.white');
+  --tw-prose-links: theme('colors.primary.400');
+  --tw-prose-bold: theme('colors.white');
+  --tw-prose-quotes: theme('colors.gray.400');
+  --tw-prose-quote-borders: theme('colors.primary.500');
+  --tw-prose-code: theme('colors.primary.300');
+  --tw-prose-pre-bg: theme('colors.gray.800');
+}
