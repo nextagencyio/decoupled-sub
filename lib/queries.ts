@@ -109,7 +109,7 @@ export function transformPost(node: any): import('./types').Post | null {
   let excerpt = node.body?.summary || ''
   if (!excerpt && node.body?.processed) {
     // Extract first paragraph as excerpt
-    const match = node.body.processed.match(/<p>(.*?)<\/p>/s)
+    const match = node.body.processed.match(/<p>[\s\S]*?<\/p>/)
     if (match) {
       excerpt = match[0]
     }

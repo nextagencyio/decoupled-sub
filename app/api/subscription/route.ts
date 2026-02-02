@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const subscription = session.subscription as import('stripe').Stripe.Subscription
+    const subscription = session.subscription as import('stripe').Stripe.Subscription & { current_period_end?: number }
     const customer = session.customer as import('stripe').Stripe.Customer
 
     // Get expiration time - fallback to 30 days from now if not available
