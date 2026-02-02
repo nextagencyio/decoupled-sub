@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import './globals.css'
+// DEMO MODE: Remove this import and <DemoModeBanner /> below for production-only builds
+import { DemoModeBanner } from './components/DemoModeBanner'
 
 export const metadata: Metadata = {
   title: 'The Insider | Premium Content Platform',
@@ -16,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
+        <DemoModeBanner />
         <Header />
         <main className="flex-1">
           {children}

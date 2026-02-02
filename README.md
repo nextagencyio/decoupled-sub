@@ -185,6 +185,40 @@ The project uses Tailwind CSS with a purple/violet primary color theme. Edit `ta
 | `npm run setup-content` | Import sample content |
 | `npm run stripe:listen` | Forward Stripe webhooks locally |
 
+## Demo Mode
+
+Demo mode allows you to showcase the subscription platform without connecting to Drupal or Stripe. It displays sample premium content and simulates the subscription experience.
+
+### Enable Demo Mode
+
+Set the environment variable:
+
+```bash
+NEXT_PUBLIC_DEMO_MODE=true
+```
+
+Or add to `.env.local`:
+```
+NEXT_PUBLIC_DEMO_MODE=true
+```
+
+### What Demo Mode Does
+
+- Shows a "Demo Mode" banner at the top of the page
+- Returns mock premium articles
+- Simulates subscription states (payments won't process)
+- No Drupal or Stripe backend required
+
+### Removing Demo Mode
+
+To convert to a production app with real subscriptions:
+
+1. Delete `lib/demo-mode.ts`
+2. Delete `data/mock/` directory
+3. Delete `app/components/DemoModeBanner.tsx`
+4. Remove `DemoModeBanner` import and usage from `app/layout.tsx`
+5. Remove demo mode checks from `app/page.tsx`
+
 ## Deployment
 
 ### Vercel
@@ -193,6 +227,8 @@ The project uses Tailwind CSS with a purple/violet primary color theme. Edit `ta
 2. Import in Vercel
 3. Add environment variables
 4. Deploy
+
+Set `NEXT_PUBLIC_DEMO_MODE=true` in Vercel environment variables for a demo deployment.
 
 ### Environment Variables for Production
 

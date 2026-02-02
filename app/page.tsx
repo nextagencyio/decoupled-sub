@@ -5,6 +5,7 @@ import { PostCard } from './components/PostCard'
 import { SetupGuide } from './components/SetupGuide'
 import { Sparkles } from 'lucide-react'
 import Link from 'next/link'
+import { isDemoMode, getMockPosts } from '@/lib/demo-mode'
 
 // Check which env vars are missing
 function getMissingEnvVars(): string[] {
@@ -21,30 +22,36 @@ function getMissingEnvVars(): string[] {
 }
 
 export default async function HomePage() {
-  const missingEnvVars = getMissingEnvVars()
-
-  // Show setup guide if Drupal is not configured
-  if (missingEnvVars.some(v => v.startsWith('DRUPAL_'))) {
-    return <SetupGuide missingEnvVars={missingEnvVars} />
-  }
-
-  const requestHeaders = await headers()
-  const client = getServerApolloClient(requestHeaders)
-
   let posts: any[] = []
   let error: string | null = null
+  let missingEnvVars: string[] = []
 
-  try {
-    const { data } = await client.query({
-      query: GET_ALL_POSTS,
-    })
+  // Demo mode: use mock posts
+  if (isDemoMode()) {
+    posts = getMockPosts()
+  } else {
+    missingEnvVars = getMissingEnvVars()
 
-    posts = (data?.nodeArticles?.nodes || [])
-      .map(transformPost)
-      .filter(Boolean)
-  } catch (e: any) {
-    console.error('Failed to fetch posts:', e)
-    error = e.message
+    // Show setup guide if Drupal is not configured
+    if (missingEnvVars.some(v => v.startsWith('DRUPAL_'))) {
+      return <SetupGuide missingEnvVars={missingEnvVars} />
+    }
+
+    const requestHeaders = await headers()
+    const client = getServerApolloClient(requestHeaders)
+
+    try {
+      const { data } = await client.query({
+        query: GET_ALL_POSTS,
+      })
+
+      posts = (data?.nodeArticles?.nodes || [])
+        .map(transformPost)
+        .filter(Boolean)
+    } catch (e: any) {
+      console.error('Failed to fetch posts:', e)
+      error = e.message
+    }
   }
 
   const featuredPost = posts.find(p => p.featured) || posts[0]

@@ -1,0 +1,100 @@
+{
+  "posts": [
+    {
+      "id": "post-1",
+      "title": "The Future of AI in Content Creation",
+      "slug": "future-ai-content-creation",
+      "excerpt": "Explore how artificial intelligence is transforming the way we create, curate, and consume content in the digital age.",
+      "body": "<p>Artificial intelligence is revolutionizing every aspect of content creation. From automated writing assistants to AI-powered video editing, the tools available to creators are becoming increasingly sophisticated.</p><h2>The Current Landscape</h2><p>Today's AI tools can generate blog posts, create social media content, and even write code. While these tools don't replace human creativity, they serve as powerful assistants that can dramatically increase productivity.</p><h2>What's Next?</h2><p>The next wave of AI content tools will focus on personalization and context-awareness. Imagine content that automatically adapts to each reader's preferences and knowledge level.</p><p><strong>This premium content is available exclusively to subscribers.</strong></p>",
+      "publishedAt": "2026-01-20",
+      "readTime": "8 min read",
+      "featured": true,
+      "image": {
+        "url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+        "alt": "AI and technology concept",
+        "width": 800,
+        "height": 533
+      },
+      "author": {
+        "name": "Sarah Mitchell",
+        "bio": "Tech writer and AI researcher",
+        "avatar": {
+          "url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+          "alt": "Sarah Mitchell"
+        }
+      }
+    },
+    {
+      "id": "post-2",
+      "title": "Building a Sustainable Business Model",
+      "slug": "sustainable-business-model",
+      "excerpt": "Learn the key strategies for creating a business that thrives while making a positive impact on society and the environment.",
+      "body": "<p>Sustainability isn't just good ethics—it's good business. Companies that prioritize sustainable practices are increasingly outperforming their competitors.</p><h2>The Triple Bottom Line</h2><p>The most successful sustainable businesses focus on three pillars: people, planet, and profit. This holistic approach ensures long-term viability while creating positive societal impact.</p><h2>Implementation Strategies</h2><p>Starting your sustainability journey doesn't require a complete business overhaul. Small, incremental changes can compound into significant improvements over time.</p><p><strong>Continue reading with a subscription.</strong></p>",
+      "publishedAt": "2026-01-18",
+      "readTime": "6 min read",
+      "featured": false,
+      "image": {
+        "url": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80",
+        "alt": "Sustainable business concept",
+        "width": 800,
+        "height": 533
+      },
+      "author": {
+        "name": "James Chen",
+        "bio": "Business strategist and sustainability consultant",
+        "avatar": {
+          "url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+          "alt": "James Chen"
+        }
+      }
+    },
+    {
+      "id": "post-3",
+      "title": "Mastering Remote Team Leadership",
+      "slug": "remote-team-leadership",
+      "excerpt": "Discover proven techniques for leading distributed teams effectively and maintaining culture in a remote-first world.",
+      "body": "<p>Leading remote teams requires a different set of skills than managing in-person. The most successful remote leaders focus on outcomes rather than hours worked.</p><h2>Communication is Everything</h2><p>In remote environments, you can't rely on hallway conversations or reading body language. Intentional, clear communication becomes your most valuable tool.</p><h2>Building Trust Remotely</h2><p>Trust is the foundation of effective remote teams. Learn how to build and maintain trust when you can't meet face-to-face.</p><p><strong>Unlock the full article with a subscription.</strong></p>",
+      "publishedAt": "2026-01-15",
+      "readTime": "10 min read",
+      "featured": false,
+      "image": {
+        "url": "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&q=80",
+        "alt": "Remote work team meeting",
+        "width": 800,
+        "height": 533
+      },
+      "author": {
+        "name": "Emily Rodriguez",
+        "bio": "Remote work expert and organizational psychologist",
+        "avatar": {
+          "url": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
+          "alt": "Emily Rodriguez"
+        }
+      }
+    },
+    {
+      "id": "post-4",
+      "title": "The Psychology of Product Design",
+      "slug": "psychology-product-design",
+      "excerpt": "Understanding human behavior is the key to creating products that people love and use habitually.",
+      "body": "<p>The best products aren't just functional—they tap into fundamental human psychology. Understanding cognitive biases, motivation, and habits can transform your design approach.</p><h2>Cognitive Load and Simplicity</h2><p>Users have limited mental resources. Products that minimize cognitive load while maximizing value win in the marketplace.</p><h2>The Hook Model</h2><p>Learn how successful products create habits through triggers, actions, variable rewards, and investment.</p><p><strong>This is premium content for subscribers only.</strong></p>",
+      "publishedAt": "2026-01-12",
+      "readTime": "12 min read",
+      "featured": false,
+      "image": {
+        "url": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80",
+        "alt": "Product design sketches",
+        "width": 800,
+        "height": 533
+      },
+      "author": {
+        "name": "Michael Park",
+        "bio": "Product designer and behavioral scientist",
+        "avatar": {
+          "url": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
+          "alt": "Michael Park"
+        }
+      }
+    }
+  ]
+}
