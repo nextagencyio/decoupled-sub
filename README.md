@@ -2,6 +2,8 @@
 
 A subscription-based content platform built with Next.js, Drupal (via Decoupled.io), and Stripe. This starter demonstrates how to implement a Substack-style paywall where subscribers can read full articles.
 
+![Decoupled Sub Homepage](screenshot.png)
+
 ## Features
 
 - **Subscription Paywall**: Free users see excerpts, subscribers see full content
