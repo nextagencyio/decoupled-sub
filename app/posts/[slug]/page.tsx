@@ -7,6 +7,7 @@ import { GET_POST_BY_SLUG, transformPost } from '@/lib/queries'
 import { hasActiveSubscription } from '@/lib/subscription'
 import { Paywall } from '@/app/components/Paywall'
 import { notFound } from 'next/navigation'
+import { isDemoMode, getMockPostBySlug } from '@/lib/demo-mode'
 
 // Disable caching to ensure subscription status is checked on each request
 export const dynamic = 'force-dynamic'
@@ -17,20 +18,26 @@ interface PostPageProps {
 
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params
-  const requestHeaders = await headers()
-  const client = getServerApolloClient(requestHeaders)
 
   let post = null
 
-  try {
-    const { data } = await client.query({
-      query: GET_POST_BY_SLUG,
-      variables: { path: `/posts/${slug}` },
-    })
+  // Demo mode: use mock post data
+  if (isDemoMode()) {
+    post = getMockPostBySlug(slug)
+  } else {
+    const requestHeaders = await headers()
+    const client = getServerApolloClient(requestHeaders)
 
-    post = transformPost(data?.route?.entity)
-  } catch (e) {
-    console.error('Failed to fetch post:', e)
+    try {
+      const { data } = await client.query({
+        query: GET_POST_BY_SLUG,
+        variables: { path: `/posts/${slug}` },
+      })
+
+      post = transformPost(data?.route?.entity)
+    } catch (e) {
+      console.error('Failed to fetch post:', e)
+    }
   }
 
   if (!post) {
