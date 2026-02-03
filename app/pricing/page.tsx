@@ -1,13 +1,22 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { PricingCard } from '../components/PricingCard'
+import { Toast } from '../components/Toast'
 import { Shield, Zap, Heart } from 'lucide-react'
 
+const isDemoMode = () => process.env.NEXT_PUBLIC_DEMO_MODE === 'true'
+
 export default function PricingPage() {
-  const router = useRouter()
+  const [showToast, setShowToast] = useState(false)
 
   const handleSubscribe = async () => {
+    // In demo mode, show a toast instead of attempting checkout
+    if (isDemoMode()) {
+      setShowToast(true)
+      return
+    }
+
     try {
       const response = await fetch('/api/checkout', {
         method: 'POST',
@@ -147,6 +156,12 @@ export default function PricingPage() {
           </div>
         </div>
       </div>
+
+      <Toast
+        message="Checkout is disabled in demo mode. Connect Stripe to enable subscriptions."
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   )
 }
