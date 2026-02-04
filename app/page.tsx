@@ -3,38 +3,44 @@ import { getServerApolloClient } from '@/lib/apollo-client'
 import { GET_ALL_POSTS, transformPost } from '@/lib/queries'
 import { PostCard } from './components/PostCard'
 import { SetupGuide } from './components/SetupGuide'
+import { AlmostThere } from './components/AlmostThere'
 import { Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import { isDemoMode, getMockPosts } from '@/lib/demo-mode'
 
 // Check which env vars are missing
-function getMissingEnvVars(): string[] {
-  const missing: string[] = []
+function getMissingEnvVars(): { drupal: string[]; stripe: string[] } {
+  const drupal: string[] = []
+  const stripe: string[] = []
 
-  if (!process.env.DRUPAL_BASE_URL) missing.push('DRUPAL_BASE_URL')
-  if (!process.env.DRUPAL_CLIENT_ID) missing.push('DRUPAL_CLIENT_ID')
-  if (!process.env.DRUPAL_CLIENT_SECRET) missing.push('DRUPAL_CLIENT_SECRET')
-  if (!process.env.STRIPE_SECRET_KEY) missing.push('STRIPE_SECRET_KEY')
-  if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) missing.push('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY')
-  if (!process.env.STRIPE_PRICE_ID) missing.push('STRIPE_PRICE_ID')
+  if (!process.env.DRUPAL_BASE_URL) drupal.push('DRUPAL_BASE_URL')
+  if (!process.env.DRUPAL_CLIENT_ID) drupal.push('DRUPAL_CLIENT_ID')
+  if (!process.env.DRUPAL_CLIENT_SECRET) drupal.push('DRUPAL_CLIENT_SECRET')
+  if (!process.env.STRIPE_SECRET_KEY) stripe.push('STRIPE_SECRET_KEY')
+  if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) stripe.push('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY')
+  if (!process.env.STRIPE_PRICE_ID) stripe.push('STRIPE_PRICE_ID')
 
-  return missing
+  return { drupal, stripe }
 }
 
 export default async function HomePage() {
   let posts: any[] = []
   let error: string | null = null
-  let missingEnvVars: string[] = []
 
   // Demo mode: use mock posts
   if (isDemoMode()) {
     posts = getMockPosts()
   } else {
-    missingEnvVars = getMissingEnvVars()
+    const missing = getMissingEnvVars()
 
-    // Show setup guide if Drupal is not configured
-    if (missingEnvVars.some(v => v.startsWith('DRUPAL_'))) {
-      return <SetupGuide missingEnvVars={missingEnvVars} />
+    // Show full setup guide if Drupal is not configured
+    if (missing.drupal.length > 0) {
+      return <SetupGuide missingEnvVars={[...missing.drupal, ...missing.stripe]} />
+    }
+
+    // Show "Almost There" if Drupal is configured but Stripe keys are missing
+    if (missing.stripe.length > 0) {
+      return <AlmostThere missingStripeVars={missing.stripe} />
     }
 
     const requestHeaders = await headers()
@@ -78,16 +84,6 @@ export default async function HomePage() {
             Start Your Subscription
           </Link>
         </div>
-
-        {/* Stripe config warning */}
-        {missingEnvVars.length > 0 && (
-          <div className="mb-8 p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">
-            <p className="text-amber-400 text-sm">
-              <strong>Note:</strong> Stripe is not fully configured. Subscriptions won&apos;t work until you add:
-              {' '}{missingEnvVars.join(', ')}
-            </p>
-          </div>
-        )}
 
         {error && (
           <div className="mb-8 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
